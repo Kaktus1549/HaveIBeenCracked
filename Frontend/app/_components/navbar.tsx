@@ -45,7 +45,8 @@ export default function Navbar() {
                     className="absolute top-1/2 left-0 rounded-lg transition-all duration-300 ease-in-out h-4/6 -z-10 bg-selector"
                     style={{
                         transform: `translate(${boxPosition - 9}px, -50%)`,
-                        width: `${boxWidth + 18}px`
+                        width: `${boxWidth + 18}px`,
+                        willChange: "transform, width, opacity",
                     }}
                 />
             </div>
