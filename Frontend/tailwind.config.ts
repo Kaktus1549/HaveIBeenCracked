@@ -14,6 +14,7 @@ const config: Config = {
         secondary: "#08394C",
         button: "#9C9C9C",
         searchBar: "#D9D9D9",
+        selector: "rgba(147, 214, 240, 0.17)"
       },
       fontFamily: {
         oxygen: ['Oxygen', 'sans-serif'],
