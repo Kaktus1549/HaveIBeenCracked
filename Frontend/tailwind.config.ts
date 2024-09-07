@@ -13,6 +13,7 @@ const config: Config = {
         primary: "#93D6F0", 
         secondary: "#08394C",
         button: "#9C9C9C",
+        buttonHover: "#5F5F5F",
         searchBar: "#D9D9D9",
         selector: "rgba(147, 214, 240, 0.17)"
       },

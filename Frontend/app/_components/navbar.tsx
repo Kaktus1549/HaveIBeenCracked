@@ -40,7 +40,6 @@ export default function Navbar() {
                         {button}
                     </button>
                 ))}
-                {/* Animated background for hover, needs fix for color flicking */}
                 <div
                     className="absolute top-1/2 left-0 rounded-lg transition-all duration-300 ease-in-out h-4/6 -z-10 bg-selector"
                     style={{
