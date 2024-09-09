@@ -27,6 +27,13 @@ const config: Config = {
       backgroundImage:{
         'neon': "url('/background/background.svg')"
       },
+      screens:{
+        "xsm": "435px",
+        "2xsm": "325px",
+      },
+      fontSize: {
+        '2xsm': '0.625rem',
+      },
     },
   },
   plugins: [],

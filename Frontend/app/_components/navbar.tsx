@@ -20,11 +20,11 @@ export default function Navbar() {
         }
     }, [hovered, selected, buttons]);
 
-    const bookmarkClass = "relative z-20 text-center text-white text-2xl font-medium";
-    const bookmarkDivs = "flex justify-center h-5/6 gap-9 items-center relative";
-
+    const bookmarkClass = "relative z-20 text-center text-white md:text-2xl md:font-medium md:h-4/6 sm:text-xl 2xsm:text-lg sm:h-5/6 2xsm:h-4/6";
+    const bookmarkDivs = "flex justify-center items-center relative md:h-5/6 md:gap-9 sm:gap-6 2xsm:gap-4 h-full";
+    
     return (
-        <header className="flex flex-row w-full justify-between h-20 items-center">
+        <header className="flex flex-row w-full justify-between items-center md:h-20 sm:h-16 2xsm:h-16">
             <div id="bookmarks" className={bookmarkDivs + " ml-8"}>
                 {buttons.map((button, index) => (
                     <button
@@ -41,7 +41,7 @@ export default function Navbar() {
                     </button>
                 ))}
                 <div
-                    className="absolute top-1/2 left-0 rounded-lg transition-all duration-300 ease-in-out h-4/6 -z-10 bg-selector"
+                    className="absolute top-1/2 left-0 rounded-lg transition-all duration-300 ease-in-out md:h-4/6 -z-10 bg-selector sm:h-4/6 xsm:h-4/6 2xsm:h-1/2"
                     style={{
                         transform: `translate(${boxPosition - 9}px, -50%)`,
                         width: `${boxWidth + 18}px`,
@@ -50,7 +50,7 @@ export default function Navbar() {
                 />
             </div>
             {/* In future make it dropdown */}
-            <div id="login" className={bookmarkDivs + " mr-10"}>
+            <div id="login" className={bookmarkDivs + " mr-10 2xsm:flex hidden"}>
                 <button className={bookmarkClass}>Login</button>
             </div>
         </header>
