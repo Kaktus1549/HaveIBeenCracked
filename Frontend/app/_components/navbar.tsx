@@ -8,7 +8,7 @@ export default function Navbar() {
     const [boxPosition, setBoxPosition] = useState<number>(0);
     const [boxWidth, setBoxWidth] = useState<number>(0);
 
-    const buttons = ["Home", "About", "Notify me"];
+    const buttons = ["Home", "About", "Security tips"];
     const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
     // Update box position and width based on hovered or selected button
@@ -19,6 +19,18 @@ export default function Navbar() {
             setBoxWidth(activeButton.offsetWidth);
         }
     }, [hovered, selected, buttons]);
+
+    useEffect(() => {
+        const resizeListener = () => {
+            const activeButton = buttonRefs.current[hovered ? buttons.indexOf(hovered) : buttons.indexOf(selected)];
+            if (activeButton) {
+                setBoxPosition(activeButton.offsetLeft);
+                setBoxWidth(activeButton.offsetWidth);
+            }
+        };
+        window.addEventListener("resize", resizeListener);
+        return () => window.removeEventListener("resize", resizeListener);
+    })
 
     const bookmarkClass = "relative z-20 text-center text-white md:text-2xl md:font-medium md:h-4/6 sm:text-xl 2xsm:text-lg sm:h-5/6 2xsm:h-4/6";
     const bookmarkDivs = "flex justify-center items-center relative md:h-5/6 md:gap-9 sm:gap-6 2xsm:gap-4 h-full";

@@ -15,14 +15,17 @@ const config: Config = {
         button: "#9C9C9C",
         buttonHover: "#5F5F5F",
         searchBar: "#D9D9D9",
-        selector: "rgba(147, 214, 240, 0.17)"
+        selector: "rgba(147, 214, 240, 0.17)",
+        noMatch: "rgba(104, 205, 35, 0.15);",
+        oneMatch: "rgba(205, 27, 0, 0.59);",
+        multipleMatches: "rgba(255, 165, 0, 0.59);",
       },
       fontFamily: {
         oxygen: ['Oxygen', 'sans-serif'],
         oxygenMono: ['Oxygen Mono', 'monospace'],
       },
       blur: {
-        bg: "299.5px"
+        bg: "299.5px",
       },
       backgroundImage:{
         'neon': "url('/background/background.svg')"
@@ -33,6 +36,15 @@ const config: Config = {
       },
       fontSize: {
         '2xsm': '0.625rem',
+        '3xsm': '0.55rem',
+      },
+      backdropBlur:{
+        noMatch: "34.5px",
+      },
+      boxShadow: {
+        'custom-green': '0 -10px 20px 10px rgba(104, 205, 35, 0.15)',
+        'custom-red': '0 -10px 20px 10px rgba(205, 27, 0, 0.59);',
+        'custom-orange': '0 -10px 20px 10px rgba(255, 165, 0, 0.59);',
       },
     },
   },
