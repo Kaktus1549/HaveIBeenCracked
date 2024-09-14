@@ -42,9 +42,23 @@ const config: Config = {
         noMatch: "34.5px",
       },
       boxShadow: {
-        'custom-green': '0 -10px 20px 10px rgba(104, 205, 35, 0.15)',
+        'custom-green': '0 -10px 20px 10px rgba(104, 205, 35, 0.15);',
         'custom-red': '0 -10px 20px 10px rgba(205, 27, 0, 0.59);',
         'custom-orange': '0 -10px 20px 10px rgba(255, 165, 0, 0.59);',
+      },
+      keyframes: {
+        appear: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" }
+        },
+        colors:{
+          "0%": { backgroundColor: "rgba(255, 165, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(255, 165, 0, 0.59);" },
+          "100%": { backgroundColor: "rgba(205, 27, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(205, 27, 0, 0.59);" },
+        }
+      },
+      animation: {
+        appear: "appear 0.7s ease-in-out forwards",
+        colors: "colors 0.7s ease-in-out forwards"
       },
     },
   },

@@ -36,8 +36,8 @@ export default function Navbar() {
     const bookmarkDivs = "flex justify-center items-center relative md:h-5/6 md:gap-9 sm:gap-6 2xsm:gap-4 h-full";
     
     return (
-        <header className="flex flex-row w-full justify-between items-center md:h-20 sm:h-16 2xsm:h-16">
-            <div id="bookmarks" className={bookmarkDivs + " ml-8"}>
+        <header className="flex flex-row w-full justify-center items-center md:h-20 sm:h-16 2xsm:h-16 xsm:justify-between">
+            <div id="bookmarks" className={bookmarkDivs + " xsm:ml-8"}>
                 {buttons.map((button, index) => (
                     <button
                         key={button}
@@ -62,7 +62,7 @@ export default function Navbar() {
                 />
             </div>
             {/* In future make it dropdown */}
-            <div id="login" className={bookmarkDivs + " mr-10 2xsm:flex hidden"}>
+            <div id="login" className={bookmarkDivs + " mr-10 xsm:flex hidden"}>
                 <button className={bookmarkClass}>Login</button>
             </div>
         </header>
