@@ -46,7 +46,7 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
     }
 
     return (
-        <div id="matches" className={"w-screen mt-20 flex items-center justify-start flex-col " + bgColor + animation}>
+        <div id="matches" className={"w-screen mt-28 2xsm:mt-20 flex items-center justify-start flex-col pl-1 pr-1 " + bgColor + animation}>
             <h2 className="mt-3 text-center font-semibold text-xl 2xsm:text-2xl xsm:text-3xl sm:text-4xl">{matches.length > 1 ? "Multiple matches found" : "Match found"}</h2>
                 {content}
             <p className="mb-4 text-center font-oxygenMono text-3xsm 2xsm:text-2xsm xsm:text-xs sm:text-sm" dangerouslySetInnerHTML={hintContent}></p>
