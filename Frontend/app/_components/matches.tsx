@@ -15,7 +15,7 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
     let content: JSX.Element | null = null;
     let bgColor: string = "";
     let hint: string = "";
-    let hintContent = { __html: hint };
+    let hintContent: { __html: string } = { __html: "" };
     let animation: string = transition ? " animate-colors opacity-1" : " animate-appear opacity-0";
 
     let spanClasses: string = "font-semibold";
@@ -32,6 +32,7 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
             ))}
             </div>
         hint = "You seem to have a common WiFi name, so the result may not be as accurate.";
+        hintContent = { __html: hint };
     }
     else{
         bgColor = "bg-oneMatch shadow-custom-red";
@@ -40,7 +41,8 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
                     <p className={pClasses}><span className={spanClasses}>BSSID:</span> {matches[0].bssid} {matches[0].vendor ? `(${matches[0].vendor})` : ""}</p>
                     <p className={pClasses}><span className={spanClasses}>Time:</span> {matches[0].timestamp}</p>
                   </div>
-        hint = "If you want to protect yourself, you can read the <span className=\"underline\">security tips!</span>";
+        hint = 'If you want to protect yourself, you can read the <span class="underline cursor-pointer">security tips!</span>';
+        hintContent = { __html: hint };    
     }
 
     return (
