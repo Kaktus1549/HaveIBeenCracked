@@ -1,11 +1,28 @@
 "use client";
 
 import React from "react";
+import { getVendor } from "../api/api";
+import { useEffect, useState } from "react";
+
 
 export default function Matches({ matches, setMatches, transition }: {matches: WiFiMatch[], setMatches: (newMatches: WiFiMatch[]) => void, transition: boolean}) {
+    const [vendor, setVendor] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchVendor = async () => {
+        if (transition === true) {
+            const vendor = await getVendor(matches[0].bssid);
+            matches[0].vendor = vendor;
+            setVendor(vendor);
+        }
+        };
+        fetchVendor();
+    }, [transition, matches]);
+    
     if (matches.length === 0){
+        let animation: string = transition ? " animate-colors opacity-1" : " animate-appear opacity-0";
         return(
-            <div id="no-match" className="w-screen bg-noMatch shadow-custom-green absolute bottom-0 flex items-center justify-start flex-col md:h-36 sm:h-28 h-20 animate-appear opacity-0">
+            <div id="no-match" className={"w-screen bg-noMatch shadow-custom-green absolute bottom-0 flex items-center justify-start flex-col md:h-36 sm:h-28 h-20" + animation}>
                 <h2 className="text-center font-semibold text-lg 2xsm:text-1xl xsm:text-2xl sm:text-3xl md:mt-3 sm:mt-1">No matches found - Great!</h2>
                 <p className="text-center font-oxygenMono text-3xsm 2xsm:text-2xsm xsm:text-xs sm:text-sm md:mt-16 sm:mt-10 mt-5">If you want to feel safe feel free to ready <span className="underline">security tips!</span></p>
             </div>
@@ -38,7 +55,7 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
         bgColor = "bg-oneMatch shadow-custom-red";
         content = <div className="flex flex-col items-start justify-center sm:min-h-36 xsm:min-h-32 min-h-28 mt-2 xsm:mt-0">
                     <p className={pClasses}><span className={spanClasses}>SSID:</span> {matches[0].ssid}</p>
-                    <p className={pClasses}><span className={spanClasses}>BSSID:</span> {matches[0].bssid} {matches[0].vendor ? `(${matches[0].vendor})` : ""}</p>
+                    <p className={pClasses}><span className={spanClasses}>BSSID:</span> {matches[0].bssid} {vendor ? `(${vendor})` : ""}</p>
                     <p className={pClasses}><span className={spanClasses}>Time:</span> {matches[0].timestamp}</p>
                   </div>
         hint = 'If you want to protect yourself, you can read the <span class="underline cursor-pointer">security tips!</span>';

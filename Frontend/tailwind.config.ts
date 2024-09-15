@@ -51,17 +51,23 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" }
         },
-        colors:{
+        colors: {
           "0%": { backgroundColor: "rgba(255, 165, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(255, 165, 0, 0.59);" },
           "100%": { backgroundColor: "rgba(205, 27, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(205, 27, 0, 0.59);" },
-        }
-      },
-      animation: {
-        appear: "appear 0.7s ease-in-out forwards",
-        colors: "colors 0.7s ease-in-out forwards"
+        },
+        slideIn: {
+          "0%": { transform: "translateY(100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        },
+        animation: {
+          appear: "appear 0.7s ease-in-out forwards",
+          colors: "colors 0.7s ease-in-out forwards",
+          slideIn: "slideIn 1.2s ease-in-out forwards",
+        },
       },
     },
-  },
-  plugins: [],
-};
+    plugins: [],
+  };
+
 export default config;

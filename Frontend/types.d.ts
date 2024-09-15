@@ -4,3 +4,10 @@ interface WiFiMatch {
     timestamp: string;
     vendor: string;
 }
+
+interface nets {
+    id: number;
+    time: Date | null;
+    BSSID: bigint | null;
+    ESSID: string | null;
+}
