@@ -53,7 +53,7 @@ export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch
                 timestamp: match.time?.toLocaleDateString() ?? ""
             });
         }));
-        setMatches(newMatches);
+        setMatches([...newMatches]);
         setLoading(false);
     }
 

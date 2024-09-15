@@ -5,12 +5,12 @@ import { getVendor } from "../api/api";
 import { useEffect, useState } from "react";
 
 
-export default function Matches({ matches, setMatches, transition }: {matches: WiFiMatch[], setMatches: (newMatches: WiFiMatch[]) => void, transition: boolean}) {
+export default function Matches({ matches, setMatches, transition, currentColor }: {matches: WiFiMatch[], setMatches: (newMatches: WiFiMatch[]) => void, transition: boolean, currentColor: string}) {
     const [vendor, setVendor] = useState<string | null>(null);
-
+    let animation: string = "";
     useEffect(() => {
         const fetchVendor = async () => {
-        if (transition === true) {
+        if (transition === true && matches.length === 1){
             const vendor = await getVendor(matches[0].bssid);
             matches[0].vendor = vendor;
             setVendor(vendor);
@@ -18,9 +18,15 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
         };
         fetchVendor();
     }, [transition, matches]);
-    
+    console.log(currentColor);
+
     if (matches.length === 0){
-        let animation: string = transition ? " animate-colors opacity-1" : " animate-appear opacity-0";
+        if (currentColor === "orange"){
+        animation = transition ? ` animate-orangeGreen opacity-1` : " animate-appear opacity-0";
+        }
+        else if (currentColor === "red"){
+        animation = transition ? ` animate-redGreen opacity-1` : " animate-appear opacity-0";
+        }
         return(
             <div id="no-match" className={"w-screen bg-noMatch shadow-custom-green mt-60 2xsm:mt-46 md:mt-28 flex items-center justify-start flex-col md:h-36 sm:h-28 h-20" + animation}>
                 <h2 className="text-center font-semibold text-lg 2xsm:text-1xl xsm:text-2xl sm:text-3xl md:mt-3 sm:mt-1">No matches found - Great!</h2>
@@ -33,12 +39,17 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
     let bgColor: string = "";
     let hint: string = "";
     let hintContent: { __html: string } = { __html: "" };
-    let animation: string = transition ? " animate-colors opacity-1" : " animate-appear opacity-0";
 
     let spanClasses: string = "font-semibold";
     let pClasses: string = "text-base 2xsm:text-md xsm:text-lg sm:text-xl text-center";
     
     if (matches.length > 1) {
+        if (currentColor === "green"){
+            animation = transition ? ` animate-greenOrange opacity-1` : " animate-appear opacity-0";
+        }
+        else if (currentColor === "red"){
+            animation = transition ? ` animate-redOrange opacity-1` : " animate-appear opacity-0";
+        }
         bgColor = "bg-multipleMatches shadow-custom-orange";
         let pClass = pClasses + " cursor-pointer hover:underline transition duration-300 hover:transform hover:scale-105"
 
@@ -53,7 +64,13 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
     }
     else{
         bgColor = "bg-oneMatch shadow-custom-red";
-        content = <div className="flex flex-col items-start justify-center sm:min-h-36 xsm:min-h-32 min-h-28 mt-2 xsm:mt-0">
+        if (currentColor === "orange"){
+            animation = transition ? ` animate-orangeRed opacity-1` : " animate-appear opacity-0";
+        }
+        else if (currentColor === "green"){
+            animation = transition ? ` animate-greenRed opacity-1` : " animate-appear opacity-0";
+        }
+        content = <div className="flex flex-col items-start justify-center sm:min-h-36 xsm:min-h-32 min-h-28 mt-2 xsm:mt-0 ">
                     <p className={pClasses}><span className={spanClasses}>SSID:</span> {matches[0].ssid}</p>
                     <p className={pClasses}><span className={spanClasses}>BSSID:</span> {matches[0].bssid} {vendor ? `(${vendor})` : ""}</p>
                     <p className={pClasses}><span className={spanClasses}>Time:</span> {matches[0].timestamp}</p>
@@ -63,10 +80,19 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
     }
 
     return (
-        <div id="matches" className={"w-screen mt-28 2xsm:mt-20 flex items-center justify-start flex-col pl-1 pr-1 " + bgColor + animation}>
-            <h2 className="mt-3 text-center font-semibold text-xl 2xsm:text-2xl xsm:text-3xl sm:text-4xl">{matches.length > 1 ? "Multiple matches found" : "Match found"}</h2>
-                {content}
-            <p className="mb-4 text-center font-oxygenMono text-3xsm 2xsm:text-2xsm xsm:text-xs sm:text-sm" dangerouslySetInnerHTML={hintContent}></p>
+        <div 
+            key={matches.map(match => match.bssid).join()} // Dynamic key based on matches' BSSID
+            id="matches" 
+            className={"w-screen mt-28 2xsm:mt-20 flex items-center justify-start flex-col pl-1 pr-1 " + bgColor + animation}
+        >
+            <h2 className="mt-3 text-center font-semibold text-xl 2xsm:text-2xl xsm:text-3xl sm:text-4xl">
+                {matches.length > 1 ? "Multiple matches found" : "Match found"}
+            </h2>
+            {content}
+            <p 
+                className="mb-4 text-center font-oxygenMono text-3xsm 2xsm:text-2xsm xsm:text-xs sm:text-sm" 
+                dangerouslySetInnerHTML={hintContent}
+            ></p>
         </div>
     );
 };

@@ -8,10 +8,15 @@ import Matches from "./matches";
 export default function Main() {
     const [matches, setMatches] = useState<WiFiMatch[] | null>(null);
     const [transition, setTransition] = useState<boolean>(false);
+    const [currentColor, setCurrentColor] = useState<string>("green");
 
 
     function changeMatches(newMatches: WiFiMatch[]){
+        if (matches === null){
+            return;
+        }
         setMatches(newMatches);
+        setCurrentColor(newMatches.length === 1 ? "red" : newMatches.length > 1 ? "orange" : "green");
         setTransition(true);
     }
 
@@ -21,7 +26,8 @@ export default function Main() {
             <p className="text-center font-oxygenMono text-2xsm 2xsm:text-xs xsm:text-sm md:text-lg">Check if your WiFi has been cracked</p>
             <Search setMatches={setMatches} />
             { matches !== null &&
-                <Matches matches={matches} setMatches={changeMatches} transition={transition} />
+                // currentColor is based on length of matches, if there is only one match, it will be red, if there are multiple matches, it will be orange, if there are no matches, it will be green
+                <Matches matches={matches} setMatches={changeMatches} transition={transition} currentColor={currentColor} />
             }
         </main>
     );

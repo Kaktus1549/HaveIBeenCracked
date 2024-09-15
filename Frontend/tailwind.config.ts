@@ -51,9 +51,29 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" }
         },
-        colors: {
+        orangeRed: {
           "0%": { backgroundColor: "rgba(255, 165, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(255, 165, 0, 0.59);" },
           "100%": { backgroundColor: "rgba(205, 27, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(205, 27, 0, 0.59);" },
+        },
+        greenRed:{
+          "0%": { backgroundColor: "rgba(104, 205, 35, 0.15)", boxShadow: "0 -10px 20px 10px rgba(104, 205, 35, 0.15);" },
+          "100%": { backgroundColor: "rgba(205, 27, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(205, 27, 0, 0.59);" },
+        },
+        redGreen:{
+          "0%": { backgroundColor: "rgba(205, 27, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(205, 27, 0, 0.59);" },
+          "100%": { backgroundColor: "rgba(104, 205, 35, 0.15)", boxShadow: "0 -10px 20px 10px rgba(104, 205, 35, 0.15);" },
+        },
+        orangeGreen:{
+          "0%": { backgroundColor: "rgba(255, 165, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(255, 165, 0, 0.59);" },
+          "100%": { backgroundColor: "rgba(104, 205, 35, 0.15)", boxShadow: "0 -10px 20px 10px rgba(104, 205, 35, 0.15);" },
+        },
+        greenOrange:{
+          "0%": { backgroundColor: "rgba(104, 205, 35, 0.15)", boxShadow: "0 -10px 20px 10px rgba(104, 205, 35, 0.15);" },
+          "100%": { backgroundColor: "rgba(255, 165, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(255, 165, 0, 0.59);" },
+        },
+        redOrange:{
+          "0%": { backgroundColor: "rgba(205, 27, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(205, 27, 0, 0.59);" },
+          "100%": { backgroundColor: "rgba(255, 165, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(255, 165, 0, 0.59);" },
         },
         slideIn: {
           "0%": { transform: "translateY(100%)", opacity: "0" },
@@ -62,8 +82,13 @@ const config: Config = {
         },
         animation: {
           appear: "appear 0.7s ease-in-out forwards",
-          colors: "colors 0.7s ease-in-out forwards",
           slideIn: "slideIn 1.2s ease-in-out forwards",
+          orangeRed: "orangeRed 0.7s ease-in-out ",
+          greenRed: "greenRed 0.7s ease-in-out ",
+          redGreen: "redGreen 0.7s ease-in-out ",
+          orangeGreen: "orangeGreen 0.7s ease-in-out ",
+          greenOrange: "greenOrange 0.7s ease-in-out ",
+          redOrange: "redOrange 0.7s ease-in-out ",
         },
         borderWidth:{
           '6': '6px',
