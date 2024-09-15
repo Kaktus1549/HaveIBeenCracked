@@ -65,6 +65,11 @@ const config: Config = {
           colors: "colors 0.7s ease-in-out forwards",
           slideIn: "slideIn 1.2s ease-in-out forwards",
         },
+        borderWidth:{
+          '6': '6px',
+          '5': '5px',
+          '4': '4px',
+        },
       },
     },
     plugins: [],

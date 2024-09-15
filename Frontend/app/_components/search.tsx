@@ -5,6 +5,7 @@ export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch
     const bigScreenPlaceholder = "Enter your WiFi name or BSSID";
     const smallScreenPlaceholder = "WiFi name or BSSID";
     const [placeholder, setPlaceholder] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const resizeListener = () => {
@@ -33,9 +34,8 @@ export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch
         return hexStr.match(/.{1,2}/g)?.join(':') ?? '';
     }
 
-    
-
     async function search(string: string){
+        setLoading(true);
         let matches = await getSearchResults(string);
         let newMatches: WiFiMatch[] = [];
         await Promise.all(matches.map(async (match) => {
@@ -54,6 +54,7 @@ export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch
             });
         }));
         setMatches(newMatches);
+        setLoading(false);
     }
 
     return (
@@ -65,7 +66,14 @@ export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch
                 placeholder={placeholder}
             />
             <button className="text-white search-button bg-button text-lg 2xsm:text-xl sm:text-2xl hover:bg-buttonHover transition duration-300 lg:w-1/12 lg:h-14 md:w-2/12 md:h-14 sm:w-2/12 sm:h-12 xsm:w-2/12 xsm:h-11 2xsm:w-3/12 2xsm:h-10 h-9 w-3/12" onClick={() => search((document.getElementById("searchBar") as HTMLInputElement).value)}>
-                <span className="text-center">Search</span>
+                <span className="text-center flex items-center justify-center">
+                    { loading === true ?
+                    <div className="spinner md:h-12 md:w-12 xsm:h-10 xsm:w-10 md:border-8 sm:border-6 xsm:border-5 border-4 border-solid h-8 w-8">
+                    </div>
+                    :
+                    <span className="text-center">Search</span>
+                    }
+                </span>
             </button>
         </div>
     );
