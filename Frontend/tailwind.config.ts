@@ -70,6 +70,9 @@ const config: Config = {
           '5': '5px',
           '4': '4px',
         },
+        margin:{
+          '46': '12.5rem',
+        }
       },
     },
     plugins: [],

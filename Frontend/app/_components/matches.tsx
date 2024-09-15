@@ -22,7 +22,7 @@ export default function Matches({ matches, setMatches, transition }: {matches: W
     if (matches.length === 0){
         let animation: string = transition ? " animate-colors opacity-1" : " animate-appear opacity-0";
         return(
-            <div id="no-match" className={"w-screen bg-noMatch shadow-custom-green absolute bottom-0 flex items-center justify-start flex-col md:h-36 sm:h-28 h-20" + animation}>
+            <div id="no-match" className={"w-screen bg-noMatch shadow-custom-green mt-60 2xsm:mt-46 md:mt-28 flex items-center justify-start flex-col md:h-36 sm:h-28 h-20" + animation}>
                 <h2 className="text-center font-semibold text-lg 2xsm:text-1xl xsm:text-2xl sm:text-3xl md:mt-3 sm:mt-1">No matches found - Great!</h2>
                 <p className="text-center font-oxygenMono text-3xsm 2xsm:text-2xsm xsm:text-xs sm:text-sm md:mt-16 sm:mt-10 mt-5">If you want to feel safe feel free to ready <span className="underline">security tips!</span></p>
             </div>

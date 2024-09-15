@@ -62,7 +62,7 @@ export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch
             <input
                 id="searchBar"
                 type="text"
-                className="p-2 border border-gray-400 search-input text-black bg-searchBar placeholder:text-sm placeholder:2xsm:text-base placeholder:xsm:text-lg placeholder:sm:text-xl placeholder:text-black lg:w-5/12 lg:h-14 md:w-7/12 md:h-14 sm:w-8/12 sm:h-12 xsm:w-8/12 xsm:h-11 2xsm:w-7/12 2xsm:h-10 h-9 w-8/12"
+                className="p-2 border border-gray-400 search-input text-black bg-searchBar placeholder:text-sm placeholder:2xsm:text-base placeholder:xsm:text-lg placeholder:sm:text-xl placeholder:text-black lg:w-5/12 lg:h-14 md:w-7/12 md:h-14 sm:w-8/12 sm:h-12 xsm:w-8/12 xsm:h-11 2xsm:w-7/12 2xsm:h-10 h-9 w-8/12 focus:outline-none focus:ring-0 focus:border-gray-400"
                 placeholder={placeholder}
             />
             <button className="text-white search-button bg-button text-lg 2xsm:text-xl sm:text-2xl hover:bg-buttonHover transition duration-300 lg:w-1/12 lg:h-14 md:w-2/12 md:h-14 sm:w-2/12 sm:h-12 xsm:w-2/12 xsm:h-11 2xsm:w-3/12 2xsm:h-10 h-9 w-3/12" onClick={() => search((document.getElementById("searchBar") as HTMLInputElement).value)}>
