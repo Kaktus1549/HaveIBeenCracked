@@ -22,6 +22,20 @@ export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch
         return () => window.removeEventListener("resize", resizeListener);
     }, []); 
 
+    useEffect(() => {
+        const keyDownHandler = (event: KeyboardEvent) => {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            search((document.getElementById("searchBar") as HTMLInputElement).value);
+          }
+        };
+        document.addEventListener('keydown', keyDownHandler);
+
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, []);
+
     // Function to convert numeric BSSID to MAC address
     function numberToMac(bssidNum: bigint | null): string {
         // Convert the number to a hexadecimal string, then pad it to 12 characters
