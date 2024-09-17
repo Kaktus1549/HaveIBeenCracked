@@ -2,9 +2,12 @@
 
 import React from "react";
 
-export default function About() {
+export default function About({disappear}: {disappear: boolean | null}) {
+
+    let animation = disappear ? "animate-disappear" : "animate-appear";
+
     return(
-        <div className="flex flex-col gap-2 mt-5 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 pb-10 w-full">
+        <div className={"flex flex-col gap-2 mt-5 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 pb-10 w-10/12 " + animation}>
             <h1 className="text-center font-semibold text-xl 2xsm:text-2xl xsm:text-3xl sm:text-4xl xsm:mb-0 mb-5">About HaveIBeenCracked</h1>
             <div id="tesxt" className="pr-10 gap-2 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 flex flex-col">
                 <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">What is HaveIBeenCracked?</h2>

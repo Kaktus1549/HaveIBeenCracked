@@ -50,7 +50,11 @@ const config: Config = {
       keyframes: {
         appear: {
           "0%": { opacity: "0" },
-          "100%": { opacity: "1" }
+          "100%": { opacity: "1" },
+        },
+        disappear: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
         },
         orangeRed: {
           "0%": { backgroundColor: "rgba(255, 165, 0, 0.59)", boxShadow: "0 -10px 20px 10px rgba(255, 165, 0, 0.59);" },
@@ -83,6 +87,7 @@ const config: Config = {
         },
         animation: {
           appear: "appear 0.7s ease-in-out forwards",
+          disappear: "disappear 0.4s ease-in-out forwards",
           slideIn: "slideIn 1.2s ease-in-out forwards",
           orangeRed: "orangeRed 0.7s ease-in-out ",
           greenRed: "greenRed 0.7s ease-in-out ",

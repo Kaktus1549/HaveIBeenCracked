@@ -5,10 +5,12 @@ import { useState } from "react";
 import Search from "./search";
 import Matches from "./matches";
 
-export default function Main() {
+export default function Main({disappear}: {disappear: boolean| null}) {
     const [matches, setMatches] = useState<WiFiMatch[] | null>(null);
     const [transition, setTransition] = useState<boolean>(false);
     const [currentColor, setCurrentColor] = useState<string>("green");
+
+    let animation = disappear === null ? "animate-slideIn opacity-0" : disappear ? "animate-disappear opacity-1" : "animate-appear opacity-0";
 
 
     function changeMatches(newMatches: WiFiMatch[]){
@@ -21,7 +23,7 @@ export default function Main() {
     }
 
     return(
-        <main className="flex flex-col justify-center w-full min-h-full gap-2 mt-44 2xsm:gap-3 md:gap-4 xsm:mt-36 sm:mt-20 animate-slideIn opacity-0 overflow-hidden relative">
+        <main className={"flex flex-col justify-center w-full min-h-full gap-2 mt-44 2xsm:gap-3 md:gap-4 xsm:mt-36 sm:mt-20 overflow-hidden relative " + animation}>
             <h1 className="text-center font-semibold text-2xl 2xsm:text-3xl xsm:text-4xl sm:text-5xl">Have I been cracked?</h1>
             <p className="text-center font-oxygenMono text-2xsm 2xsm:text-xs xsm:text-sm md:text-lg">Check if your WiFi has been cracked</p>
             <Search setMatches={setMatches} />

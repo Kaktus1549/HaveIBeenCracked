@@ -2,23 +2,65 @@
 
 import React from "react";
 
-export default function Tips() {
-    return(
-        <div className="flex flex-col gap-2 mt-5 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 pb-10 w-full">
-            <h1 className="text-center font-semibold text-xl 2xsm:text-2xl xsm:text-3xl sm:text-4xl xsm:mb-0 mb-5">About HaveIBeenCracked</h1>
-            <div id="tesxt" className="pr-10 gap-2 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 flex flex-col">
-                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">What is HaveIBeenCracked?</h2>
+export default function Tips({disappear}: {disappear: boolean| null}) {
+
+    let animation = disappear ? "animate-disappear" : "animate-appear";
+
+    return (
+        <div className={"flex flex-col gap-2 mt-5 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 pb-10 w-10/12 " + animation}>
+            <h1 className="text-center font-semibold text-xl 2xsm:text-2xl xsm:text-3xl sm:text-4xl xsm:mb-0 mb-5">Security Tips for WiFi Networks</h1>
+            
+            <div className="pr-10 gap-2 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 flex flex-col">
+                
+                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">Why WiFi Security Matters</h2>
                 <p className="text-left 2xsm:ml-10 ml-8 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
-                    <span className="font-bold">HaveIBeenCracked</span> is an open-source project designed to help users understand the importance of <span className="font-bold">secure passwords</span>, particularly for <span className="font-bold">WiFi networks</span>. By searching for a WiFi network's <span className="font-bold">SSID</span> or <span className="font-bold">BSSID</span> in a database of <span className="font-bold">pwned WiFi networks</span>, users can quickly check if their network has been <span className="font-bold">compromised</span>. The database includes the <span className="font-bold">SSID</span>, <span className="font-bold">BSSID</span>, and the <span className="font-bold">time when the network was first flagged</span>. The goal is to encourage <span className="font-bold">better security practices</span>, such as avoiding <span className="font-bold">weak passwords</span> like "00000" that are easily cracked.
+                    WiFi is the gateway to your devices and personal data. A compromised network can expose everything from your internet activity to sensitive personal information. Weak security settings, default passwords, and outdated encryption methods make your network an easy target for attackers.
                 </p>
-                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">Why I created it?</h2>
+
+                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">Use Strong, Random Passwords</h2>
                 <p className="text-left 2xsm:ml-10 ml-8 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
-                    I was inspired by the popular service <span className="font-bold">HaveIBeenPwned</span>, which alerts users if their personal information has been exposed in data breaches. While <span className="font-bold">HaveIBeenPwned</span> focuses on personal data, I noticed a gap when it came to WiFi networks. Many people still use weak or default passwords for their WiFi, making them easy targets for attackers. I created <span className="font-bold">HaveIBeenCracked</span> to show people that WiFi security is not just a "cool word" but an essential part of protecting their privacy and devices.
+                    The cornerstone of a secure WiFi network is a <span className="font-bold">strong, random password</span>. Many people make the mistake of using short or simple passwords like "password123" or leaving the default password provided by the router.
                 </p>
-                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">How to use it?</h2>
+                <ul className="list-disc 2xsm:ml-14 ml-12 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">Why are short or common passwords bad?</span> Short passwords can be cracked in seconds using modern tools, and common passwords are easily found in hacker password lists.</li>
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">Why is a random password good?</span> Humans are predictable and often base passwords on personal details. Randomly generated passwords eliminate this vulnerability.</li>
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">What makes a strong password?</span> A strong WiFi password should be at least 12-16 characters long and include a mix of letters, numbers, and symbols.</li>
+                </ul>
+
+                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">Enable WPA3 Encryption</h2>
                 <p className="text-left 2xsm:ml-10 ml-8 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
-                    Using <span className="font-bold">HaveIBeenCracked</span> is simple. You can search for your WiFi network by either its <span className="font-bold">SSID</span> (WiFi name) or <span className="font-bold">BSSID</span> (the unique identifier of the WiFi router). Once you search, the tool checks the database for any records of compromised networks. If your network is listed, it means it was found online with weak security settings, and you should update your WiFi password to something more secure immediately.
+                    WiFi encryption protects the data between your devices and the router. The latest standard, <span className="font-bold">WPA3</span>, is the most secure option available.
                 </p>
+                <ul className="list-disc 2xsm:ml-14 ml-12 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">Why not WPA2 or WEP?</span> Older encryption methods are insecure. WPA2 has vulnerabilities, and WEP can be cracked within minutes.</li>
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">How to enable WPA3?</span> Check your router's settings under the "Wireless" or "Security" section to enable WPA3. If it's unavailable, use WPA2 and consider upgrading your router.</li>
+                </ul>
+
+                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">Regularly Update Your Router's Firmware</h2>
+                <p className="text-left 2xsm:ml-10 ml-8 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
+                    Firmware updates often include important security patches that prevent attackers from exploiting weaknesses in your router.
+                </p>
+                <ul className="list-disc 2xsm:ml-14 ml-12 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">Why are firmware updates important?</span> Older routers with unpatched vulnerabilities can be exploited by hackers.</li>
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">How to update firmware?</span> Check your router’s manual or manufacturer’s website for instructions. Many modern routers have an auto-update option.</li>
+                </ul>
+
+                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">Disable WPS (WiFi Protected Setup)</h2>
+                <p className="text-left 2xsm:ml-10 ml-8 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
+                    WiFi Protected Setup (WPS) is a feature meant to make connecting devices easier but has serious security flaws.
+                </p>
+                <ul className="list-disc 2xsm:ml-14 ml-12 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">Why is WPS risky?</span> The PIN used in WPS is vulnerable to guessing attacks. Disabling this feature closes a significant security loophole.</li>
+                </ul>
+
+                <h2 className="text-left 2xsm:ml-6 ml-4 font-semibold text-base 2xsm:text-lg xsm:text-xl sm:text-2xl">Change Your Router's Default Admin Password</h2>
+                <p className="text-left 2xsm:ml-10 ml-8 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
+                    Most routers come with default login credentials, which are well-known and often included in hacker lists.
+                </p>
+                <ul className="list-disc 2xsm:ml-14 ml-12 font-roboto text-xs 2xsm:text-sm xsm:text-base md:text-lg">
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">Why is this important?</span> If someone gains access to your router’s admin panel, they can change settings and compromise your network.</li>
+                    <li className="sm:ml-6 ml-5"><span className="font-bold">How to change it?</span> Log into your router’s admin page, and look for the "Administration" or "Security" settings to update the password.</li>
+                </ul>
             </div>
         </div>
     );

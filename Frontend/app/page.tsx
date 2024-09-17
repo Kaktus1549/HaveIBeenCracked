@@ -8,18 +8,28 @@ import About from "./_components/about";
 import Tips from "./_components/tips";
 
 export default function Home() {
-  const [page, setPage] = useState<string>("about");
+  const [page, setPage] = useState<string>("home");
+  const [disappear, setDisappear] = useState<boolean | null>(null);
+
+  function changePage(page: string) {
+    setDisappear(true);
+    setTimeout(() => {
+      setPage(page);
+      setDisappear(false);
+    }, 400);
+  }
+
   return (
     <>
-      <Navbar changeTopic={setPage} />
+      <Navbar changeTopic={changePage} />
       { page === "home" ?
-        <Main />
+        <Main disappear={disappear} />
         :
         page === "about" ?
-        <About />
+        <About disappear={disappear} />
         :
         page === "security tips" &&
-        <Tips />
+        <Tips disappear={disappear} />
       }
     </>
   );
