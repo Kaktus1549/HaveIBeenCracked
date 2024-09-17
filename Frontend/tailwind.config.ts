@@ -23,6 +23,7 @@ const config: Config = {
       fontFamily: {
         oxygen: ['Oxygen', 'sans-serif'],
         oxygenMono: ['Oxygen Mono', 'monospace'],
+        roboto: ['Roboto', 'sans-serif'],
       },
       blur: {
         bg: "299.5px",

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 
-export default function Navbar() {
+export default function Navbar({changeTopic}: {changeTopic: (topic: string) => void}) {
     const [selected, setSelected] = useState<string>("Home");
     const [hovered, setHovered] = useState<string | null>(null);
     const [boxPosition, setBoxPosition] = useState<number>(0);
@@ -32,6 +32,11 @@ export default function Navbar() {
         return () => window.removeEventListener("resize", resizeListener);
     })
 
+    function Clicked(button: string) {
+        setSelected(button);
+        changeTopic(button.toLowerCase());
+    }
+
     const bookmarkClass = "relative z-20 text-center text-white md:text-2xl md:font-medium md:h-4/6 sm:text-xl 2xsm:text-lg sm:h-5/6 h-4/6 text-base ";
     const bookmarkDivs = "flex justify-center items-center relative md:h-5/6 md:gap-9 sm:gap-6 gap-4 h-full";
     
@@ -44,7 +49,7 @@ export default function Navbar() {
                         ref={(el) => {
                             buttonRefs.current[index] = el;
                         }}
-                        onClick={() => setSelected(button)}
+                        onClick={() => Clicked(button)}
                         onMouseEnter={() => setHovered(button)}
                         onMouseLeave={() => setHovered(null)}
                         className={bookmarkClass + (selected === button ? " text-white" : " text-gray-400")}
