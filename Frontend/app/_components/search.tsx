@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getSearchResults, getVendor } from "../api/api";
 
-export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch[]) => void}) {
+export default function Search({setMatches, matchesList, setTransition, setColor}: {setMatches: (newMatches: WiFiMatch[]) => void, matchesList: WiFiMatch[] | null, setTransition: (transition: boolean) => void, setColor: (color: string) => void}) {
     const bigScreenPlaceholder = "Enter your WiFi name or BSSID";
     const smallScreenPlaceholder = "WiFi name or BSSID";
     const [placeholder, setPlaceholder] = useState("");
@@ -67,6 +67,14 @@ export default function Search({setMatches}: {setMatches: (newMatches: WiFiMatch
                 timestamp: match.time?.toLocaleDateString() ?? ""
             });
         }));
+        console.log(matchesList);
+        if (matchesList === null){
+            setTransition(false);
+        }
+        else {
+            setTransition(true);
+            setColor(matchesList.length === 1 ? "red" : matchesList.length > 1 ? "orange" : "green");
+        }
         setMatches([...newMatches]);
         setLoading(false);
     }
