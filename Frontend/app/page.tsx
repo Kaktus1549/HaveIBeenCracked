@@ -8,7 +8,7 @@ import About from "./_components/about";
 import Tips from "./_components/tips";
 
 export default function Home() {
-  const [page, setPage] = useState<string>("home");
+  const [page, setPage] = useState<string>("Home");
   const [disappear, setDisappear] = useState<boolean | null>(null);
 
   function changePage(page: string) {
@@ -21,14 +21,14 @@ export default function Home() {
 
   return (
     <>
-      <Navbar changeTopic={changePage} />
-      { page === "home" ?
-        <Main disappear={disappear} />
+      <Navbar changeTopic={changePage} currentPage={page} />
+      { page === "Home" ?
+        <Main disappear={disappear} setPage={setPage} />
         :
-        page === "about" ?
+        page === "About" ?
         <About disappear={disappear} />
         :
-        page === "security tips" &&
+        page === "Security tips" &&
         <Tips disappear={disappear} />
       }
     </>

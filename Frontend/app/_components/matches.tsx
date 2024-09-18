@@ -2,12 +2,13 @@
 
 import React from "react";
 import { getVendor } from "../api/api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactNode } from "react";
 
-export default function Matches({ matches, setMatches, transition, currentColor }: {matches: WiFiMatch[], setMatches: (newMatches: WiFiMatch[]) => void, transition: boolean, currentColor: string}) {
+export default function Matches({ matches, setMatches, transition, currentColor, setPage }: {matches: WiFiMatch[], setMatches: (newMatches: WiFiMatch[]) => void, transition: boolean, currentColor: string, setPage: (page: string) => void }) {
     const [vendor, setVendor] = useState<string | null>(null);
     const [animation, setAnimation] = useState<string>("");
     const [bgColor, setBgColor] = useState<string>("");
+    const [hintElement, setHintElement] = useState<ReactNode | null>(null);
 
     function changeColor(startClass: string, endClass: string) {
         setBgColor(startClass);
@@ -89,7 +90,22 @@ export default function Matches({ matches, setMatches, transition, currentColor 
             }
         }
     }, [matches, currentColor, transition]);
-    
+    useEffect(() => {
+        if (matches.length === 0) {
+            setHintElement(null);
+        }
+        else if (matches.length > 1) {
+            let hint = <p className="mb-4 text-center font-oxygenMono text-3xsm 2xsm:text-2xsm xsm:text-xs sm:text-sm">You seem to have a common WiFi name, so the result may not be as accurate.</p>;
+            setHintElement(hint);
+        }
+        else {
+            let hint = <p className="mb-4 text-center font-oxygenMono text-3xsm 2xsm:text-2xsm xsm:text-xs sm:text-sm">
+            If you want to protect yourself, you can read the <span className="underline cursor-pointer hover:scale-105 transofrm inline-block transition-transform duration-300 ease-in-out" onClick={() => (setPage("Security tips"))}>security tips!</span></p>;
+            setHintElement(hint);
+        }
+    }
+    , [matches, setPage]);
+
     if (matches.length === 0) {
         return (
             <div id="no-match" className={"w-screen bg-noMatch shadow-custom-green mt-60 2xsm:mt-46 md:mt-28 flex items-center justify-start flex-col md:h-36 sm:h-28 h-20" + animation}>
@@ -99,8 +115,6 @@ export default function Matches({ matches, setMatches, transition, currentColor 
         );
     }
     let content: JSX.Element | null = null;
-    let hint: string = "";
-    let hintContent: { __html: string } = { __html: "" };
 
     let spanClasses: string = "font-semibold";
     let pClasses: string = "text-base 2xsm:text-md xsm:text-lg sm:text-xl text-center";
@@ -112,18 +126,13 @@ export default function Matches({ matches, setMatches, transition, currentColor 
                 <p key={index} className={pClasses + " cursor-pointer hover:underline transition duration-300 hover:transform hover:scale-105"} onClick={() => setMatches([match])}>{match.ssid} - {match.bssid}</p>
             ))}
         </div>;
-        hint = "You seem to have a common WiFi name, so the result may not be as accurate.";
-        hintContent = { __html: hint };
     } else {
         content = <div className="flex flex-col items-start justify-center sm:min-h-36 xsm:min-h-32 min-h-28 mt-2 xsm:mt-0 ">
             <p className={pClasses}><span className={spanClasses}>SSID:</span> {matches[0].ssid}</p>
             <p className={pClasses}><span className={spanClasses}>BSSID:</span> {matches[0].bssid} {vendor ? `(${vendor})` : ""}</p>
             <p className={pClasses}><span className={spanClasses}>Time:</span> {matches[0].timestamp}</p>
         </div>;
-        hint = 'If you want to protect yourself, you can read the <span class="underline cursor-pointer">security tips!</span>';
-        hintContent = { __html: hint };
     }
-    console.log(bgColor);
     return (
         <div 
             key={matches.map(match => match.bssid).join()} 
@@ -134,7 +143,7 @@ export default function Matches({ matches, setMatches, transition, currentColor 
                 {matches.length > 1 ? "Multiple matches found" : "Match found"}
             </h2>
             {content}
-            <p className="mb-4 text-center font-oxygenMono text-3xsm 2xsm:text-2xsm xsm:text-xs sm:text-sm" dangerouslySetInnerHTML={hintContent}></p>
+            {hintElement}
         </div>
     );
 }

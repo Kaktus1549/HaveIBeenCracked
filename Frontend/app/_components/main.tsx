@@ -5,7 +5,7 @@ import { useState } from "react";
 import Search from "./search";
 import Matches from "./matches";
 
-export default function Main({disappear}: {disappear: boolean| null}) {
+export default function Main({disappear, setPage}: {disappear: boolean| null, setPage: (page: string) => void}) {
     const [matches, setMatches] = useState<WiFiMatch[] | null>(null);
     const [transition, setTransition] = useState<boolean>(false);
     const [currentColor, setCurrentColor] = useState<string>("green");
@@ -29,7 +29,7 @@ export default function Main({disappear}: {disappear: boolean| null}) {
             <Search setMatches={setMatches} matchesList={matches} setTransition={setTransition} setColor={setCurrentColor} />
             { matches !== null &&
                 // currentColor is based on length of matches, if there is only one match, it will be red, if there are multiple matches, it will be orange, if there are no matches, it will be green
-                <Matches matches={matches} setMatches={changeMatches} transition={transition} currentColor={currentColor} />
+                <Matches matches={matches} setMatches={changeMatches} transition={transition} currentColor={currentColor} setPage={setPage} />
             }
         </main>
     );
