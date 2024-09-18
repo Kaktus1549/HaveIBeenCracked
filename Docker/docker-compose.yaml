@@ -1,0 +1,6 @@
+services:
+  hibc-frontend:
+    restart: unless-stopped
+    build: ../Frontend/.
+    ports:
+      - "${DOCKER_PORT}:3000"
