@@ -1,0 +1,20 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+model VendorsList {
+  macPrefix  String  @id @db.VarChar(13)
+  vendorName String? @db.VarChar(108)
+}
+
+model nets {
+  id    Int       @id @default(autoincrement())
+  time  DateTime? @db.DateTime(0)
+  BSSID BigInt?
+  ESSID String?   @db.VarChar(32)
+}
