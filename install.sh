@@ -18,11 +18,12 @@ MYSQL_PORT=${MYSQL_PORT:-3306}
 read -p "Enter the MySQL user (default root): " MYSQL_USER
 MYSQL_USER=${MYSQL_USER:-root}
 read -sp "Enter the MySQL password: " MYSQL_PASSWORD
+echo ""
 read -p "Enter the MySQL database (default: HaveIBeenCracked-Public): " MYSQL_DATABASE
 MYSQL_DATABASE=${MYSQL_DATABASE:-HaveIBeenCracked-Public}
 
 cat > ./Frontend/.env <<EOF
-DATABASE_URL=mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DATABASE
+DATABASE_URL="mysql://$MYSQL_USER:$MYSQL_PASSWORD@$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DATABASE"
 EOF
 
 cat > ./Docker/.env <<EOF
