@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import { DropdownMenuCheckboxes } from "./shadcn/dropdown";
 
 export default function Navbar({
   changeTopic,
@@ -13,9 +15,10 @@ export default function Navbar({
   const [hovered, setHovered] = useState<string | null>(null);
   const [boxPosition, setBoxPosition] = useState<number>(0);
   const [boxWidth, setBoxWidth] = useState<number>(0);
+  const [loginOpen, setLoginOpen] = useState<boolean>(false);
 
   const buttons = ["Home", "About", "Security tips"];
-  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const buttonRefs = useRef<(HTMLButtonElement | HTMLDivElement | null)[]>([]);
 
   // Update the `selected` state whenever `currentPage` changes
   useEffect(() => {
@@ -52,7 +55,7 @@ export default function Navbar({
 
   function handleClick(button: string) {
     setSelected(button);
-    changeTopic(button.toLowerCase());
+    changeTopic(button);
   }
 
   const bookmarkClass =
@@ -92,8 +95,21 @@ export default function Navbar({
           }}
         />
       </div>
-      <div id="login" className={bookmarkDivs + " mr-10 xsm:flex hidden"}>
-        <button className={bookmarkClass}>Login</button>
+      <div
+        id="login"
+        className="justify-center items-center relative md:h-5/6 h-full mr-10 xsm:flex hidden cursor-pointer"
+        onClick={() => setLoginOpen((prev) => !prev)}
+        key={loginOpen ? "loginOpen" : "loginClosed"}
+      >
+        <Image
+          src="/login/arrow_up.svg"
+          alt="Login"
+          width={20}
+          height={20}
+          className={`ml-10 ${loginOpen ? "animate-rotateArrow" : "animate-rotateArrowBack md:h-4/6 sm:h-4/6 xsm:h-4/6 h-1/2"}`}
+        />
+
+        <DropdownMenuCheckboxes setLogin={setLoginOpen} login={loginOpen} />
       </div>
     </header>
   );
