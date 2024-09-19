@@ -67,7 +67,6 @@ export default function Search({setMatches, matchesList, setTransition, setColor
                 timestamp: match.time?.toLocaleDateString() ?? ""
             });
         }));
-        console.log(matchesList);
         if (matchesList === null){
             setTransition(false);
         }

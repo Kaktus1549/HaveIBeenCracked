@@ -16,7 +16,6 @@ export function DropdownMenuCheckboxes({
   setLogin: React.Dispatch<React.SetStateAction<boolean>>;
   login: boolean;
 }) {
-  console.log(login);
   return (
     <DropdownMenu
       open={login}
