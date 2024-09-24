@@ -117,14 +117,18 @@ export default function Matches({ matches, setMatches, transition, currentColor,
     let content: JSX.Element | null = null;
 
     let spanClasses: string = "font-semibold";
-    let pClasses: string = "text-base 2xsm:text-md xsm:text-lg sm:text-xl text-center";
+    let pClasses: string = "text-base font-extralight 2xsm:text-md xsm:text-lg lg:text-xl text-center";
 
     if (matches.length > 1) {
         content = <div className="flex flex-col items-center justify-center sm:min-h-36 sm:mb-8 min-h-24 mb-6">
             <p className={pClasses + " mt-5 mb-2"}><span className={spanClasses}>Matches with their BSSID:</span></p>
-            {matches.map((match, index) => (
-                <p key={index} className={pClasses + " cursor-pointer hover:underline transition duration-300 hover:transform hover:scale-105"} onClick={() => setMatches([match])}>{match.ssid} - {match.bssid}</p>
-            ))}
+            <div className="flex flex-row flex-wrap items-center justify-center mt-10 gap-y-4 gap-12">
+                {matches.map((match, index) => (
+                    <div key={index} className="flex flex-row items-center justify-center h-8 bg-glass border-glassBorder border-1 rounded-md transition duration-300 hover:transform hover:scale-105 cursor-pointer group2 xl:w-1/5 ml:w-1/4 sm:w-1/3 xsm:w-1/2 w-3/4 overflow-hidden whitespace-nowrap text-ellipsis" onClick={() => setMatches([match])}>
+                        <p key={index} className={pClasses + " group2 hover:underline"}>{match.ssid} - {match.bssid}</p>
+                    </div>
+                ))}
+            </div>
         </div>;
     } else {
         content = <div className="flex flex-col items-start justify-center sm:min-h-36 xsm:min-h-32 min-h-28 mt-2 xsm:mt-0 ">

@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-  			background: 'hsl(var(--background))',
+  			background: '#030A0E',
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
@@ -29,6 +29,8 @@ const config: Config = {
   			multipleMatches: 'rgba(255, 165, 0, 0.59);',
   			foreground: 'hsl(var(--foreground))',
 			login: "#333333",
+			glass: "rgba(255, 255, 255, 0.25);",
+			glassBorder: "rgba(255, 255, 255, 0.30);",
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -72,6 +74,7 @@ const config: Config = {
   			neon: "url('/background/background.svg')"
   		},
   		screens: {
+			'ml': '840px',
   			'xsm': '435px',
   			'2xsm': '325px'
   		},
@@ -80,7 +83,8 @@ const config: Config = {
   			'3xsm': '0.55rem'
   		},
   		backdropBlur: {
-  			noMatch: '34.5px'
+  			noMatch: '34.5px',
+			glass: '7.5px'
   		},
   		boxShadow: {
   			'custom-green': '0 -10px 20px 10px rgba(104, 205, 35, 0.15);',
@@ -199,6 +203,7 @@ const config: Config = {
 
 		},
   		borderWidth: {
+			'1': '1px',
   			'4': '4px',
   			'5': '5px',
   			'6': '6px'
