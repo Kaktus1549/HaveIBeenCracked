@@ -7,7 +7,7 @@ export default function Tips({disappear}: {disappear: boolean| null}) {
     let animation = disappear ? "animate-disappear" : "animate-appear";
 
     return (
-        <div className={"flex flex-col gap-2 mt-5 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 pb-10 w-10/12 " + animation}>
+        <div className={"flex flex-col gap-2 mt-5 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 pb-10 md:w-10/12 w-11/12 " + animation}>
             <h1 className="text-center font-semibold text-xl 2xsm:text-2xl xsm:text-3xl sm:text-4xl xsm:mb-0 mb-5">Security Tips for WiFi Networks</h1>
             
             <div className="pr-10 gap-2 2xsm:gap-4 xsm:gap-6 sm:gap-8 md:gap-10 flex flex-col">
