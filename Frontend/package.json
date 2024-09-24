@@ -22,7 +22,7 @@
     "clsx": "^2.1.1",
     "dropdown-menu": "^0.1.1",
     "lucide-react": "^0.441.0",
-    "next": "14.2.8",
+    "next": "14.2.10",
     "prisma": "^5.19.1",
     "react": "^18",
     "react-dom": "^18",
