@@ -23,6 +23,10 @@ export async function getSearchResults(Search: string): Promise<nets[]> {
         let matches = await prisma.nets.findMany({
             where: {
                 BSSID: bssidNum
+            },
+            // Order by ascending BSSID
+            orderBy: {
+                BSSID: 'asc'
             }
         });
         return matches;
@@ -32,6 +36,10 @@ export async function getSearchResults(Search: string): Promise<nets[]> {
         let matches = await prisma.nets.findMany({
             where: {
                 ESSID: Search
+            },
+            // Order by ascending BSSID
+            orderBy: {
+                BSSID: 'asc'
             }
         });
         return matches;
